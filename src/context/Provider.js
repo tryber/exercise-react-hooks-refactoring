@@ -13,6 +13,12 @@ function Provider({ children }) {
     }
   );
 
+  const [signal, setSignal] = useState(
+    {
+      color: 'red',
+    }
+  );
+
   const moveCar = (car, side) => {
     setCar({
       ...cars,
@@ -20,12 +26,26 @@ function Provider({ children }) {
     });
   };
 
+  const changeSignal = (signalColor) => {
+    setSignal({
+      ...signal,
+      color: signalColor,
+    });
+  };
+
   return (
-    <CarsContext.Provider value={{ ...cars, moveCar: moveCar }}>
+    <CarsContext.Provider value={
+      {
+        ...cars,
+        ...signal,
+        moveCar: moveCar,
+        changeSignal: changeSignal
+      }
+    }>
       {children}
     </CarsContext.Provider>
   );
-}
+};
 
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
