@@ -1,13 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import './GameCell.css';
 import xImage from './x.png';
 import oImage from './o.svg';
 
-class GameCell extends React.Component {
-  render() {
-    const { content, onClick, id } = this.props;
-
+function GameCell({ content, onClick, id }) {
     if (content === 1) {
       return (
         <div
@@ -23,6 +20,7 @@ class GameCell extends React.Component {
         </div>
       );
     }
+
     if (content === 2) {
       return (
         <div
@@ -38,6 +36,7 @@ class GameCell extends React.Component {
         </div>
       );
     }
+    
     return (
       <div
         role="button"
@@ -49,16 +48,12 @@ class GameCell extends React.Component {
         onClick={onClick}
       />
     );
-  }
 }
 
-GameCell.propTypes = {
-  content: PropTypes.oneOf([0, 1, 2]),
-  onClick: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-};
+GameCell.propTypes = ({
+  content: PropTypes.number,
+  id: PropTypes.number,
+  onClick: PropTypes.func,
+}).isRequired;
 
-GameCell.defaultProps = {
-  content: 0,
-};
 export default GameCell;
